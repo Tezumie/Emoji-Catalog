@@ -31,11 +31,28 @@
 
 ## 📁 Using the Emoji Data
 
-You can use the combined emoji data from our project for your own applications. The merged data is available via the following CDN link:
+You can get the emoji data using the `fetch` API, you can copy and use this template:
 
-### CDN URL
 ```html
-https://your-github-username.github.io/emoji-browser/data/merged_emoji_data.json
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const emojiDataURL = 'https://raw.githubusercontent.com/Tezumie/Emoji-Catalog/refs/heads/main/data/merged_emoji_data.json';
+
+    fetch(emojiDataURL)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Emoji Data:', data);
+        
+        // Example: Show the first emoji's short name in the console
+        if (data && data.length > 0) {
+          console.log('First emoji short name:', data[0].short_name);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching emoji data:', error);
+      });
+  });
+</script>
 ```
 
 ### Data Structure
