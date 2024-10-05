@@ -1,0 +1,1016 @@
+[
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER A",
+    "unified": "1F1E6",
+    "non_qualified": "1F1E6",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1e6.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_a",
+    "short_names": [
+      "regional_indicator_a"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2001,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "a"
+    ],
+    "emoticons": [],
+    "native": "🇦",
+    "aliases": [
+      "regional_indicator_a"
+    ],
+    "description": "regional indicator symbol letter A"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER B",
+    "unified": "1F1E7",
+    "non_qualified": "1F1E7",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1e7.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_b",
+    "short_names": [
+      "regional_indicator_b"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2002,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "b"
+    ],
+    "emoticons": [],
+    "native": "🇧",
+    "aliases": [
+      "regional_indicator_b"
+    ],
+    "description": "regional indicator symbol letter B"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER C",
+    "unified": "1F1E8",
+    "non_qualified": "1F1E8",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1e8.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_c",
+    "short_names": [
+      "regional_indicator_c"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2003,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "c"
+    ],
+    "emoticons": [],
+    "native": "🇨",
+    "aliases": [
+      "regional_indicator_c"
+    ],
+    "description": "regional indicator symbol letter C"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER D",
+    "unified": "1F1E9",
+    "non_qualified": "1F1E9",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1e9.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_d",
+    "short_names": [
+      "regional_indicator_d"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2004,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "d"
+    ],
+    "emoticons": [],
+    "native": "🇩",
+    "aliases": [
+      "regional_indicator_d"
+    ],
+    "description": "regional indicator symbol letter D"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER E",
+    "unified": "1F1EA",
+    "non_qualified": "1F1EA",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ea.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_e",
+    "short_names": [
+      "regional_indicator_e"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2005,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "e"
+    ],
+    "emoticons": [],
+    "native": "🇪",
+    "aliases": [
+      "regional_indicator_e"
+    ],
+    "description": "regional indicator symbol letter E"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER F",
+    "unified": "1F1EB",
+    "non_qualified": "1F1EB",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1eb.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_f",
+    "short_names": [
+      "regional_indicator_f"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2006,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "f"
+    ],
+    "emoticons": [],
+    "native": "🇫",
+    "aliases": [
+      "regional_indicator_f"
+    ],
+    "description": "regional indicator symbol letter F"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER G",
+    "unified": "1F1EC",
+    "non_qualified": "1F1EC",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ec.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_g",
+    "short_names": [
+      "regional_indicator_g"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2007,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "g"
+    ],
+    "emoticons": [],
+    "native": "🇬",
+    "aliases": [
+      "regional_indicator_g"
+    ],
+    "description": "regional indicator symbol letter G"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER H",
+    "unified": "1F1ED",
+    "non_qualified": "1F1ED",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ed.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_h",
+    "short_names": [
+      "regional_indicator_h"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2008,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "h"
+    ],
+    "emoticons": [],
+    "native": "🇭",
+    "aliases": [
+      "regional_indicator_h"
+    ],
+    "description": "regional indicator symbol letter H"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER I",
+    "unified": "1F1EE",
+    "non_qualified": "1F1EE",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ee.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_i",
+    "short_names": [
+      "regional_indicator_i"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2009,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "i"
+    ],
+    "emoticons": [],
+    "native": "🇮",
+    "aliases": [
+      "regional_indicator_i"
+    ],
+    "description": "regional indicator symbol letter I"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER J",
+    "unified": "1F1EF",
+    "non_qualified": "1F1EF",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ef.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_j",
+    "short_names": [
+      "regional_indicator_j"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2010,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "j"
+    ],
+    "emoticons": [],
+    "native": "🇯",
+    "aliases": [
+      "regional_indicator_j"
+    ],
+    "description": "regional indicator symbol letter J"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER K",
+    "unified": "1F1F0",
+    "non_qualified": "1F1F0",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f0.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_k",
+    "short_names": [
+      "regional_indicator_k"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2011,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "k"
+    ],
+    "emoticons": [],
+    "native": "🇰",
+    "aliases": [
+      "regional_indicator_k"
+    ],
+    "description": "regional indicator symbol letter K"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER L",
+    "unified": "1F1F1",
+    "non_qualified": "1F1F1",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f1.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_l",
+    "short_names": [
+      "regional_indicator_l"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2012,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "l"
+    ],
+    "emoticons": [],
+    "native": "🇱",
+    "aliases": [
+      "regional_indicator_l"
+    ],
+    "description": "regional indicator symbol letter L"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER M",
+    "unified": "1F1F2",
+    "non_qualified": "1F1F2",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f2.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_m",
+    "short_names": [
+      "regional_indicator_m"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2013,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "m"
+    ],
+    "emoticons": [],
+    "native": "🇲",
+    "aliases": [
+      "regional_indicator_m"
+    ],
+    "description": "regional indicator symbol letter M"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER N",
+    "unified": "1F1F3",
+    "non_qualified": "1F1F3",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f3.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_n",
+    "short_names": [
+      "regional_indicator_n"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2014,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "n"
+    ],
+    "emoticons": [],
+    "native": "🇳",
+    "aliases": [
+      "regional_indicator_n"
+    ],
+    "description": "regional indicator symbol letter N"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER O",
+    "unified": "1F1F4",
+    "non_qualified": "1F1F4",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f4.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_o",
+    "short_names": [
+      "regional_indicator_o"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2015,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "o"
+    ],
+    "emoticons": [],
+    "native": "🇴",
+    "aliases": [
+      "regional_indicator_o"
+    ],
+    "description": "regional indicator symbol letter O"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER P",
+    "unified": "1F1F5",
+    "non_qualified": "1F1F5",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f5.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_p",
+    "short_names": [
+      "regional_indicator_p"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2016,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "p"
+    ],
+    "emoticons": [],
+    "native": "🇵",
+    "aliases": [
+      "regional_indicator_p"
+    ],
+    "description": "regional indicator symbol letter P"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER Q",
+    "unified": "1F1F6",
+    "non_qualified": "1F1F6",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f6.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_q",
+    "short_names": [
+      "regional_indicator_q"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2017,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "q"
+    ],
+    "emoticons": [],
+    "native": "🇶",
+    "aliases": [
+      "regional_indicator_q"
+    ],
+    "description": "regional indicator symbol letter Q"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER R",
+    "unified": "1F1F7",
+    "non_qualified": "1F1F7",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f7.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_r",
+    "short_names": [
+      "regional_indicator_r"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2018,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "r"
+    ],
+    "emoticons": [],
+    "native": "🇷",
+    "aliases": [
+      "regional_indicator_r"
+    ],
+    "description": "regional indicator symbol letter R"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER S",
+    "unified": "1F1F8",
+    "non_qualified": "1F1F8",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f8.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_s",
+    "short_names": [
+      "regional_indicator_s"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2019,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "s"
+    ],
+    "emoticons": [],
+    "native": "🇸",
+    "aliases": [
+      "regional_indicator_s"
+    ],
+    "description": "regional indicator symbol letter S"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER T",
+    "unified": "1F1F9",
+    "non_qualified": "1F1F9",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1f9.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_t",
+    "short_names": [
+      "regional_indicator_t"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2020,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "t"
+    ],
+    "emoticons": [],
+    "native": "🇹",
+    "aliases": [
+      "regional_indicator_t"
+    ],
+    "description": "regional indicator symbol letter T"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER U",
+    "unified": "1F1FA",
+    "non_qualified": "1F1FA",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1fa.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_u",
+    "short_names": [
+      "regional_indicator_u"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2021,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "u"
+    ],
+    "emoticons": [],
+    "native": "🇺",
+    "aliases": [
+      "regional_indicator_u"
+    ],
+    "description": "regional indicator symbol letter U"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER V",
+    "unified": "1F1FB",
+    "non_qualified": "1F1FB",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1fb.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_v",
+    "short_names": [
+      "regional_indicator_v"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2022,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "v"
+    ],
+    "emoticons": [],
+    "native": "🇻",
+    "aliases": [
+      "regional_indicator_v"
+    ],
+    "description": "regional indicator symbol letter V"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER W",
+    "unified": "1F1FC",
+    "non_qualified": "1F1FC",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1fc.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_w",
+    "short_names": [
+      "regional_indicator_w"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2023,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "w"
+    ],
+    "emoticons": [],
+    "native": "🇼",
+    "aliases": [
+      "regional_indicator_w"
+    ],
+    "description": "regional indicator symbol letter W"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER X",
+    "unified": "1F1FD",
+    "non_qualified": "1F1FD",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1fd.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_x",
+    "short_names": [
+      "regional_indicator_x"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2024,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "x"
+    ],
+    "emoticons": [],
+    "native": "🇽",
+    "aliases": [
+      "regional_indicator_x"
+    ],
+    "description": "regional indicator symbol letter X"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER Y",
+    "unified": "1F1FE",
+    "non_qualified": "1F1FE",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1fe.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_y",
+    "short_names": [
+      "regional_indicator_y"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2025,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "y"
+    ],
+    "emoticons": [],
+    "native": "🇾",
+    "aliases": [
+      "regional_indicator_y"
+    ],
+    "description": "regional indicator symbol letter Y"
+  },
+  {
+    "name": "REGIONAL INDICATOR SYMBOL LETTER Z",
+    "unified": "1F1FF",
+    "non_qualified": "1F1FF",
+    "docomo": "",
+    "au": "",
+    "softbank": "",
+    "google": "",
+    "image": "1f1ff.png",
+    "sheet_x": 0,
+    "sheet_y": 0,
+    "short_name": "regional_indicator_z",
+    "short_names": [
+      "regional_indicator_z"
+    ],
+    "text": null,
+    "texts": null,
+    "category": "Flags",
+    "subcategory": "regional_indicator",
+    "sort_order": 2026,
+    "added_in": "0.6",
+    "has_img_apple": false,
+    "has_img_google": false,
+    "has_img_twitter": false,
+    "has_img_facebook": false,
+    "keywords": [
+      "regional",
+      "indicator",
+      "symbol",
+      "letter",
+      "z"
+    ],
+    "emoticons": [],
+    "native": "🇿",
+    "aliases": [
+      "regional_indicator_z"
+    ],
+    "description": "regional indicator symbol letter Z"
+  }
+]
