@@ -1,0 +1,240 @@
+
+<!-- This tool is used to fetch json data from multiple sources and combine them into a single file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emoji Data Merger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #fetchButton, #downloadButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #output {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #fff;
+            overflow: auto;
+        }
+        #loading {
+            text-align: center;
+            display: none;
+            font-size: 18px;
+            color: #555;
+        }
+        #error {
+            text-align: center;
+            color: red;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Emoji Data Merger Tool</h1>
+    <button id="fetchButton">Fetch and Merge Emoji Data</button>
+    <button id="downloadButton" style="display: none;">Download Merged JSON</button>
+    <div id="loading">Loading data, please wait...</div>
+    <div id="error"></div>
+    <textarea id="output" readonly placeholder="Merged JSON will appear here..."></textarea>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('fetchButton').addEventListener('click', async () => {
+            const fetchButton = document.getElementById('fetchButton');
+            const downloadButton = document.getElementById('downloadButton');
+            const loading = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            const output = document.getElementById('output');
+
+            // Reset previous outputs
+            errorDiv.style.display = 'none';
+            output.value = '';
+            downloadButton.style.display = 'none';
+
+            // Show loading indicator
+            loading.style.display = 'block';
+            fetchButton.disabled = true;
+
+            try {
+                // Fetch first emoji data
+                const emojiDataResponse = await fetch('https://raw.githubusercontent.com/iamcal/emoji-data/master/emoji.json');
+                if (!emojiDataResponse.ok) {
+                    throw new Error('Failed to fetch emoji.json from GitHub.');
+                }
+                const emojiData = await emojiDataResponse.json();
+
+                // Fetch second emoji-mart data (hosted locally)
+                const emojiMartDataResponse = await fetch('emojimart.json'); // Ensure 'emojimart.json' is correctly hosted
+                if (!emojiMartDataResponse.ok) {
+                    throw new Error('Failed to fetch emoji-mart data.');
+                }
+                const emojiMartData = await emojiMartDataResponse.json();
+
+                // Fetch third gemoji data
+                const gemojiDataResponse = await fetch('https://raw.githubusercontent.com/github/gemoji/refs/heads/master/db/emoji.json');
+                if (!gemojiDataResponse.ok) {
+                    throw new Error('Failed to fetch gemoji data from GitHub.');
+                }
+                const gemojiData = await gemojiDataResponse.json();
+
+                // Process emoji-mart data to create a map of unified codes to keywords, emoticons, and native emojis
+                const emojiMartMap = {};
+
+                if (emojiMartData.emojis && typeof emojiMartData.emojis === 'object') {
+                    Object.values(emojiMartData.emojis).forEach(emoji => {
+                        if (emoji.skins && Array.isArray(emoji.skins)) {
+                            emoji.skins.forEach(skin => {
+                                if (skin.unified) {
+                                    const unifiedNormalized = skin.unified.toUpperCase(); // Normalize to uppercase
+                                    // Initialize the entry if it doesn't exist
+                                    if (!emojiMartMap[unifiedNormalized]) {
+                                        emojiMartMap[unifiedNormalized] = {
+                                            keywords: emoji.keywords || [],
+                                            emoticons: emoji.emoticons || [],
+                                            native: skin.native || ""
+                                        };
+                                    } else {
+                                        // If already exists, merge keywords and emoticons, and set native if not already set
+                                        emojiMartMap[unifiedNormalized].keywords = Array.from(new Set([
+                                            ...emojiMartMap[unifiedNormalized].keywords,
+                                            ...(emoji.keywords || [])
+                                        ]));
+                                        emojiMartMap[unifiedNormalized].emoticons = Array.from(new Set([
+                                            ...emojiMartMap[unifiedNormalized].emoticons,
+                                            ...(emoji.emoticons || [])
+                                        ]));
+                                        // Preferably, keep the first native emoji found
+                                        if (!emojiMartMap[unifiedNormalized].native && skin.native) {
+                                            emojiMartMap[unifiedNormalized].native = skin.native;
+                                        }
+                                    }
+                                } else {
+                                    console.warn('Emoji-mart skin without unified code:', skin);
+                                }
+                            });
+                        } else {
+                            console.warn('Emoji-mart entry without skins:', emoji);
+                        }
+                    });
+                } else {
+                    throw new Error('Invalid structure in emoji-mart data.');
+                }
+
+                // Process gemoji data to create a map of emoji character to aliases and description
+                const gemojiMap = {};
+                if (Array.isArray(gemojiData)) {
+                    gemojiData.forEach(emoji => {
+                        if (emoji.emoji) {
+                            gemojiMap[emoji.emoji] = {
+                                aliases: emoji.aliases || [],
+                                description: emoji.description || ""
+                            };
+                        } else {
+                            console.warn('gemoji entry without emoji character:', emoji);
+                        }
+                    });
+                } else {
+                    throw new Error('Invalid structure in gemoji data.');
+                }
+
+                // Merge the data by adding keywords, emoticons, native, aliases, and description to the first emoji data
+                const mergedData = emojiData.map(emoji => {
+                    if (!emoji.unified) {
+                        console.warn('Emoji entry without unified code:', emoji);
+                        // Optionally, you can skip these entries or handle them differently
+                        return {
+                            ...emoji,
+                            keywords: [],
+                            emoticons: [],
+                            native: "",
+                            aliases: [],
+                            description: ""
+                        };
+                    }
+
+                    const unifiedKey = emoji.unified.toUpperCase(); // Normalize to uppercase
+
+                    // Fetch corresponding data from emoji-mart map
+                    const martData = emojiMartMap[unifiedKey] || {};
+
+                    if (Object.keys(martData).length === 0) {
+                        console.warn(`No match found for unified key: ${unifiedKey}`);
+                    }
+
+                    // Fetch aliases and description from gemoji map using the native emoji character
+                    const aliasesAndDescription = martData.native ? gemojiMap[martData.native] || {} : {};
+
+                    if (martData.native && (!aliasesAndDescription.aliases || !aliasesAndDescription.description)) {
+                        console.warn(`No gemoji data found for native emoji: ${martData.native}`);
+                    }
+
+                    return {
+                        ...emoji,
+                        keywords: martData.keywords || [],
+                        emoticons: martData.emoticons || [],
+                        native: martData.native || "",
+                        aliases: aliasesAndDescription.aliases || [],
+                        description: aliasesAndDescription.description || ""
+                    };
+                });
+
+                // Display the merged JSON in the textarea with indentation
+                output.value = JSON.stringify(mergedData, null, 2);
+
+                // Show download button
+                downloadButton.style.display = 'block';
+
+            } catch (err) {
+                console.error(err);
+                errorDiv.textContent = 'Error: ' + err.message;
+                errorDiv.style.display = 'block';
+            } finally {
+                // Hide loading indicator and enable button
+                loading.style.display = 'none';
+                fetchButton.disabled = false;
+            }
+        });
+
+        // Download button functionality
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            const output = document.getElementById('output').value;
+            if (!output) {
+                alert('No data to download.');
+                return;
+            }
+            const blob = new Blob([output], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'merged_emoji_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+      });
+    </script>
+
+</body>
+</html>
