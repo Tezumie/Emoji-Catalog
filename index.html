@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😀 Emoji Browser</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" />
+  <link rel="stylesheet" type="text/css" href="css/cards.css">
+  <link rel="stylesheet" type="text/css" href="css/logo.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    img.emoji {
+      height: 1em;
+      width: 1em;
+      margin: 0 .05em 0 .1em;
+      vertical-align: -0.1em;
+    }
+
+    /* Loading wrapper */
+    .loading-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(0, 0, 0);
+      z-index: 100000;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      font-family: var(--font-famili-emoji);
+    }
+
+    @keyframes wrapperOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-100%);
+        visibility: hidden;
+      }
+    }
+
+    @keyframes wrapperIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(50px) scale(0.2);
+        opacity: 0;
+      }
+    }
+
+    /* Toggle Button */
+    #toggle-button {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 5px;
+      font-size: 20px;
+      background-color: #ff9800;
+      background-color: var(--color-primary);
+      border-radius: 8px;
+      border: none;
+      color: var(--color-text);
+      cursor: pointer;
+      z-index: 100001;
+      display: block;
+      transform: scale(0);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #TweenMojiView {
+      font-family: 'Twemoji Mozilla', sans-serif !important;
+    }
+
+    /* Google Style Button: Uses Noto Color Emoji */
+    #GoogleView {
+      font-family: 'Noto Color Emoji', sans-serif !important;
+    }
+
+    /* Noto View Button: Uses Noto Emoji specifically */
+    #NotoView {
+      font-family: 'Noto Emoji', sans-serif !important;
+    }
+
+    /* Sans Style Button: Uses system sans-serif */
+    #SansView {
+      font-family: 'Roboto', 'Apple Color Emoji', 'Segoe UI Emoji', 'EmojiOne Color', sans-serif !important;
+    }
+  </style>
+  <script src="data/tweenMoji.js" crossorigin="anonymous"></script>
+  <script src="src/cards.js" defer></script>
+</head>
+
+<body>
+  <!-- Loading Wrapper (Initially Empty) -->
+  <div class="loading-wrapper" id="loading-wrapper"></div>
+
+  <!-- Toggle Button -->
+  <button id="toggle-button">🚀</button>
+  <div class="search-bar">
+    <div id="efc-card-container">
+      <!-- logo -->
+    </div>
+    <div class="search-input-container">
+      <input type="text" id="searchInput" placeholder="🔍   Search emoji...">
+      <button id="clearSearchBtn" class="clear-search-btn">✖️</button>
+    </div>
+  </div>
+  <div class="main-container">
+    <div class="info-panel left-info-panel">
+      <div id="categoryContainer" class="category-container">
+        <button id="categoryAll" class="category-button" data-category="All">🌎<span class="button-text">
+                        All</span></button>
+        <button class="category-button" data-category="Smileys & Emotion">😊<span class="button-text"> Smileys &
+                        Emotion</span> <span>💩</span></button>
+        <button class="category-button" data-category="People & Body">🙋<span class="button-text"> People &
+                        Body</span> <span>👍</span></button>
+        <button class="category-button" data-category="Animals & Nature">🐶<span class="button-text"> Animals &
+                        Nature</span> <span>🌿</span></button>
+        <button class="category-button" data-category="Food & Drink">🍔<span class="button-text"> Food &
+                        Drink</span> <span>☕</span></button>
+        <button class="category-button" data-category="Travel & Places">✈️<span class="button-text"> Travel &
+                        Places</span> <span>🏠</span></button>
+        <button class="category-button" data-category="Activities">⚽<span class="button-text">
+                        Activities</span></button>
+        <button class="category-button" data-category="Objects">💡<span class="button-text">
+                        Objects</span></button>
+        <button class="category-button" data-category="Symbols">✅<span class="button-text">
+                        Symbols</span></button>
+        <button class="category-button" data-category="Flags">🏁<span class="button-text"> Flags</span></button>
+      </div>
+    </div>
+    <div class="results-wrapper">
+      <div class="view-toggle-container">
+        <button id="defaultViewBtn" class="view-toggle-button" title="Large View">⬛</button>
+        <button id="simpleViewBtn" class="view-toggle-button" title="Small View">▪️</button>
+        <button id="TweenMojiView" class="view-toggle-button" title="Twitter Style">🐦</button>
+        <button id="GoogleView" class="view-toggle-button" title="Google Style">🤑</button>
+        <button id="NotoView" class="view-toggle-button" title="Noto Style">🫠</button>
+        <button id="SansView" class="view-toggle-button" title="Sans Style">🤪</button>
+      </div>
+      <div class="emoji-container" id="emojiContainer">
+        <!-- Emoji cards -->
+      </div>
+    </div>
+    <div class="info-panel right-info-panel">
+      <div id="cards-container">
+        <!-- Info cards  -->
+      </div>
+    </div>
+  </div>
+  <script src="src/space-load.js" defer></script>
+  <script src="src/logo.js" defer></script>
+  <script>
+    let currentSelectedEmoji = null; // Track the currently selected emoji
+        let originalCategoryButtons = document.getElementById("categoryContainer").innerHTML; // Store original buttons
+        let originalToggleButtons = document.querySelector(".view-toggle-container").innerHTML; // Store original toggle buttons
+
+        // Event listeners for style switching
+        const tweenMojiBtn = document.getElementById("TweenMojiView");
+        const sansViewBtn = document.getElementById("SansView");
+        const googleViewBtn = document.getElementById("GoogleView");
+        const notoViewBtn = document.getElementById("NotoView");
+
+        tweenMojiBtn.addEventListener("click", () => setEmojiStyle(true, false));
+        sansViewBtn.addEventListener("click", () => setEmojiStyle(false, false));
+        googleViewBtn.addEventListener("click", () => setEmojiStyle(false, true));
+        notoViewBtn.addEventListener("click", () => setEmojiStyle(false, false,true));
+
+        async function setEmojiStyle(isTwitter, isGoogle = false,isNoto=false) {
+            twitterStyle = isTwitter;
+            //document.documentElement.style.setProperty("--font-famili-emoji", isTwitter ? "'Twemoji Mozilla', sans-serif" : "'IBM Plex Sans', sans-serif","Noto Emoji");
+
+            if (isTwitter) {
+                document.documentElement.style.setProperty("--font-famili-emoji", "'Twemoji Mozilla', sans-serif");
+            } else if (isGoogle) {
+                document.documentElement.style.setProperty("--font-famili-emoji", "'Noto Color Emoji', sans-serif");
+            } else if(isNoto){
+                // Default to system emoji with Noto Emoji as a fallback
+                document.documentElement.style.setProperty("--font-famili-emoji", "'Noto Emoji', sans-serif");
+            } else {
+                // Default to system emoji with Noto Emoji as a fallback
+                document.documentElement.style.setProperty("--font-famili-emoji", "'Segoe UI Emoji', 'Apple Color Emoji', sans-serif, 'Noto Emoji'");
+            }
+            // Save current active states for category and view buttons
+            const activeCategoryButton = document.querySelector(".category-button.active");
+            const activeViewButtonId = document.querySelector(".view-toggle-button.active")?.id;
+
+            // Restore original button contents
+            document.getElementById("categoryContainer").innerHTML = originalCategoryButtons;
+            document.querySelector(".view-toggle-container").innerHTML = originalToggleButtons;
+
+            // Reattach event listeners to the buttons
+            reattachEventListeners();
+
+            // Restore active category button
+            if (activeCategoryButton) {
+                const restoredCategoryButton = document.querySelector(`[data-category="${activeCategoryButton.dataset.category}"]`);
+                if (restoredCategoryButton) restoredCategoryButton.classList.add("active");
+            }
+
+            // Restore active view button
+            if (activeViewButtonId) {
+                const restoredViewButton = document.getElementById(activeViewButtonId);
+                if (restoredViewButton) restoredViewButton.classList.add("active");
+            }
+
+            // Re-render the emojis in the main container if not initial render
+            if (!isInitialRender) {
+                renderEmojis(currentSearchTerm, currentCategory);
+            }
+
+            // Re-highlight the selected emoji card and show its details
+            if (currentSelectedEmoji) {
+                highlightActiveCard(currentSelectedEmoji.unified);
+                showEmojiInfo(currentSelectedEmoji);
+            }
+
+            // Apply Twemoji styling if Twitter style is active
+            if (twitterStyle) {
+                twemoji.parse(document.getElementById("categoryContainer"));
+                // twemoji.parse(document.querySelector(".view-toggle-container"));
+                twemoji.parse(document.getElementById("defaultViewBtn"));
+                twemoji.parse(document.getElementById("simpleViewBtn"));
+// clearSearchBtn
+// searchInput
+// loading-wrapper
+// toggle-button
+//✖️
+// twemoji.parse(document.getElementById("toggle-button"));
+// twemoji.parse(document.getElementById("clearSearchBtn"));
+// twemoji.parse(document.querySelector(".search-bar"));
+               
+            }
+                twemoji.parse(document.getElementById("TweenMojiView"));
+        }
+
+
+        function reattachEventListeners() {
+            document.getElementById("defaultViewBtn").addEventListener("click", setDefaultView);
+            document.getElementById("simpleViewBtn").addEventListener("click", setSimpleView);
+            document.getElementById("TweenMojiView").addEventListener("click", () => setEmojiStyle(true));
+            document.getElementById("SansView").addEventListener("click", () => setEmojiStyle(false, false));
+            document.getElementById("GoogleView").addEventListener("click", () => setEmojiStyle(false, true));
+            document.getElementById("NotoView").addEventListener("click", () => setEmojiStyle(false, false,true));
+
+        }
+
+        // View Toggle Handlers
+        function setDefaultView() {
+            disableCardTransitions();
+            document.getElementById("simpleViewBtn").classList.remove("active");
+            document.getElementById("defaultViewBtn").classList.add("active");
+            document.getElementById("emojiContainer").classList.remove("simple-view");
+            enableCardTransitions();
+        }
+
+        function setSimpleView() {
+            disableCardTransitions();
+            document.getElementById("defaultViewBtn").classList.remove("active");
+            document.getElementById("simpleViewBtn").classList.add("active");
+            document.getElementById("emojiContainer").classList.add("simple-view");
+            enableCardTransitions();
+        }
+
+        // Reattach these when restoring buttons
+        function disableCardTransitions() {
+            document.querySelectorAll(".results-card").forEach((card) => {
+                card.style.transition = "none";
+            });
+        }
+
+        function enableCardTransitions() {
+            setTimeout(() => {
+                document.querySelectorAll(".results-card").forEach((card) => {
+                    card.style.transition = "";
+                });
+            }, 50);
+        }
+        document.addEventListener("DOMContentLoaded", () => setEmojiStyle(true));
+
+
+
+        const emojiDataUrl = "data/merged_emoji_data.json";
+        const BATCH_SIZE = 50; // Number of items to load at a time (including headers)
+        let emojiData = [];
+        let currentCategory = "All";
+        let currentSearchTerm = "";
+        let flatEmojiList = []; // Flattened list of headers and emojis
+        let currentBatchIndex = 0; // Tracks the next item to render
+        let firstEmojiToDisplay = null;
+        const observer = new IntersectionObserver(handleIntersect, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.5,
+        });
+
+        const preferredOrder = {
+            "Smileys & Emotion": [
+                "face-smiling",
+                "face-affection",
+                "face-tongue",
+                "face-hand",
+                "face-neutral-skeptical",
+                "face-sleepy",
+                "face-unwell",
+                "face-hat",
+                "face-glasses",
+                "face-concerned",
+                "face-negative",
+                "face-costume",
+                "cat-face",
+                "monkey-face",
+                "emotion",
+                "heart",
+            ],
+            "People & Body": [
+                "hand-fingers-open",
+                "hand-fingers-partial",
+                "hand-single-finger",
+                "hand-fingers-closed",
+                "hands",
+                "hand-prop",
+                "body-parts",
+                "person",
+                "person-gesture",
+                "person-fantasy",
+                "person-sport",
+                "person-role",
+                "person-resting",
+                "person-activity",
+                "family",
+                "person-symbol",
+            ],
+            "Animals & Nature": [
+                "animal-mammal",
+                "animal-bird",
+                "animal-amphibian",
+                "animal-reptile",
+                "animal-marine",
+                "animal-bug",
+                "plant-flower",
+                "plant-other",
+            ],
+            "Food & Drink": [
+                "food-fruit",
+                "food-vegetable",
+                "food-prepared",
+                "food-asian",
+                "food-marine",
+                "food-sweet",
+                "drink",
+                "dishware",
+            ],
+            "Travel & Places": [
+                "place-map",
+                "place-geographic",
+                "place-building",
+                "place-religious",
+                "place-other",
+                "transport-ground",
+                "transport-water",
+                "transport-air",
+                "hotel",
+                "time",
+                "sky & weather",
+            ],
+            Activities: ["sport", "game", "event", "award-medal", "arts & crafts"],
+            Objects: [
+                "clothing",
+                "sound",
+                "music",
+                "musical-instrument",
+                "phone",
+                "computer",
+                "light & video",
+                "book-paper",
+                "money",
+                "mail",
+                "writing",
+                "office",
+                "lock",
+                "tool",
+                "science",
+                "medical",
+                "household",
+                "other-object",
+            ],
+            Symbols: [
+                "geometric",
+                "keycap",
+                "alphanum",
+                "currency",
+                "arrow",
+                "transport-sign",
+                "warning",
+                "av-symbol",
+                "religion",
+                "gender",
+                "zodiac",
+                "math",
+                "punctuation",
+                "other-symbol",
+            ],
+            Flags: ["country-flag", "subdivision-flag", "flag"],
+            Component: ["skin-tone"],
+        };
+
+        async function fetchEmojis() {
+            try {
+                const response = await fetch(emojiDataUrl);
+                emojiData = await response.json();
+                renderEmojis();
+            } catch (error) {
+                console.error("Error fetching emoji data:", error);
+            }
+        }
+
+        function renderEmojis(searchTerm = "", category = "All") {
+            const container = document.getElementById("emojiContainer");
+            container.innerHTML = "";
+            flatEmojiList = []; // Reset the flattened list
+            currentBatchIndex = 0; // Reset batch index
+            firstEmojiToDisplay = null; // Reset the first emoji reference
+            searchTerm = searchTerm.trim().toLowerCase();
+            const unicodeSearchTerm = searchTerm.toUpperCase().startsWith("U+")
+                ? searchTerm.replace(/^U\+/i, "").toUpperCase()
+                : searchTerm.toUpperCase();
+
+            const filteredEmojis = emojiData
+                .filter((emoji) => category === "All" || emoji.category === category)
+                .filter((emoji) => {
+                    const lowerSearchTerm = searchTerm.toLowerCase();
+                    return (
+                        lowerSearchTerm === "" ||
+                        emoji.name.toLowerCase().includes(lowerSearchTerm) ||
+                        (emoji.short_name && emoji.short_name.toLowerCase().includes(lowerSearchTerm)) ||
+                        (emoji.short_names && emoji.short_names.some((shortName) => shortName.toLowerCase().includes(lowerSearchTerm))) ||
+                        (emoji.keywords && emoji.keywords.some((keyword) => keyword.toLowerCase().includes(lowerSearchTerm))) ||
+                        (emoji.emoticons && emoji.emoticons.some((emoticon) => emoticon.includes(searchTerm))) ||
+                        (emoji.aliases && emoji.aliases.some((alias) => alias.toLowerCase().includes(lowerSearchTerm))) ||
+                        (emoji.description && emoji.description.toLowerCase().includes(lowerSearchTerm)) ||
+                        (emoji.tags && emoji.tags.some((tag) => tag.toLowerCase().includes(lowerSearchTerm))) ||
+                        (emoji.subcategory && emoji.subcategory.toLowerCase().includes(lowerSearchTerm)) ||
+                        (emoji.native && emoji.native.normalize() === searchTerm.normalize()) ||
+                        (emoji.unified && emoji.unified.toUpperCase().includes(unicodeSearchTerm))
+
+                    );
+                });
+
+
+            // Group emojis by category and subcategory
+            const groupedEmojis = filteredEmojis.reduce((groups, emoji) => {
+                const cat = emoji.category || "Other";
+                const sub = emoji.subcategory || "Other";
+                if (!groups[cat]) {
+                    groups[cat] = {};
+                }
+                if (!groups[cat][sub]) {
+                    groups[cat][sub] = [];
+                }
+                groups[cat][sub].push(emoji);
+                return groups;
+            }, {});
+
+            const categoryOrder = Object.keys(preferredOrder);
+            const orderedCategories = category === "All" ? categoryOrder : [category];
+
+            // Flatten the groupedEmojis into a flat list with headers
+            orderedCategories.forEach((cat) => {
+                if (groupedEmojis[cat]) {
+                    // Add category header
+                    flatEmojiList.push({ type: 'category', name: cat });
+
+                    const subcategoryOrder = (
+                        preferredOrder[cat] || Object.keys(groupedEmojis[cat])
+                    ).concat(
+                        Object.keys(groupedEmojis[cat]).filter((sub) => !(preferredOrder[cat] || []).includes(sub))
+                    );
+
+                    subcategoryOrder.forEach((sub) => {
+                        if (groupedEmojis[cat][sub]) {
+                            // Add subcategory header
+                            flatEmojiList.push({ type: 'subcategory', name: sub });
+
+                            // Add emojis
+                            groupedEmojis[cat][sub].forEach((emoji) => {
+                                flatEmojiList.push({ type: 'emoji', data: emoji });
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Handle suggestions
+            if (filteredEmojis.length < 100 && searchTerm.length >= 0) {
+                const fuseOptions = {
+                    keys: ["name", "short_name", "keywords", "tags", "unified"],
+                    threshold: 0.4,
+                };
+                const fuse = new Fuse(emojiData, fuseOptions);
+                const suggestedEmojis = fuse
+                    .search(searchTerm)
+                    .map((result) => result.item)
+                    .filter((emoji) => !filteredEmojis.includes(emoji))
+                    .slice(0, 20);
+
+                if (suggestedEmojis.length > 0) {
+                    // Add separator
+                    flatEmojiList.push({ type: 'separator', name: 'Suggested 🔎' });
+
+                    // Add suggested emojis
+                    suggestedEmojis.forEach((emoji) => {
+                        flatEmojiList.push({ type: 'emoji', data: emoji, suggested: true });
+                    });
+                }
+            }
+
+            // Store the flattened list in the dataset for reference (if needed)
+            container.dataset.flatEmojiList = JSON.stringify(flatEmojiList);
+
+            // Render the first batch
+            renderNextBatch();
+
+            // Add a sentinel element for lazy loading
+            const sentinel = document.createElement("div");
+            sentinel.className = "sentinel";
+            container.appendChild(sentinel);
+            observer.observe(sentinel);
+
+        }
+        let isInitialRender = true;  // Track if it's the initial batch render
+        let forceShowFirstEmoji = true;  // Force showing first emoji for searches and category changes
+
+        async function renderNextBatch() {
+            const container = document.getElementById("emojiContainer");
+            const batch = flatEmojiList.slice(currentBatchIndex, currentBatchIndex + BATCH_SIZE);
+
+            batch.forEach((item) => {
+                if (item.type === 'category') {
+                    const categoryHeader = document.createElement("h1");
+                    categoryHeader.textContent = item.name;
+                    categoryHeader.classList.add("category-header");
+                    container.appendChild(categoryHeader);
+                } else if (item.type === 'subcategory') {
+                    const subcategoryHeader = document.createElement("h2");
+                    subcategoryHeader.textContent = item.name;
+                    subcategoryHeader.classList.add("sub-category-header");
+                    container.appendChild(subcategoryHeader);
+                } else if (item.type === 'separator') {
+                    const separator = document.createElement("div");
+                    separator.style.cssText =
+                        "width: 100%; text-align: center; margin: 10px 0; font-weight: bold; font-size: 1.2em;";
+                    separator.classList.add("suggested-sep");
+                    separator.textContent = item.name;
+                    container.appendChild(separator);
+                } else if (item.type === 'emoji') {
+                    const emoji = item.data;
+                    const card = createEmojiCard(emoji, item.suggested);
+                    container.appendChild(card);
+
+                    // Set the first emoji to display details if it's a forced render (e.g., category change or search)
+                    if ((isInitialRender || forceShowFirstEmoji) && !firstEmojiToDisplay && !item.suggested) {
+                        firstEmojiToDisplay = emoji;
+                    }
+                }
+            });
+
+            // Update the batch index
+            currentBatchIndex += BATCH_SIZE;
+
+            // Attach sentinel to the last card for the observer
+            const lastCard = container.lastElementChild;
+            if (lastCard) {
+                const sentinel = document.createElement("div");
+                sentinel.className = "sentinel";
+                sentinel.style.width = "0px";
+                sentinel.style.height = "0px";
+                sentinel.style.position = "absolute";
+                lastCard.appendChild(sentinel); // Attach sentinel as a child of the last card
+                observer.observe(sentinel);
+            }
+
+            // Display the first emoji's details if it's an initial render or forced render (search/category change)
+            if ((isInitialRender || forceShowFirstEmoji) && firstEmojiToDisplay) {
+                showEmojiInfo(firstEmojiToDisplay);
+                firstEmojiToDisplay = null;  // Ensure it's only called once per render
+            }
+            if (twitterStyle) {
+                await twemoji.parse(container, {
+                });
+                if (isInitialRender) {
+                    console.log('ready')
+                    setTimeout(() => {
+                        closeLoadScreen();
+                        toggleButton.style.transform = 'scale(1)';
+                    }, 3000);
+                }
+            }
+            // After the first batch, ensure the info panel isn't updated again during lazy loading
+            isInitialRender = false;
+            forceShowFirstEmoji = false;  // Reset forced render flag after the first batch or search/category switch
+        }
+
+        function handleIntersect(entries) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Unobserve the current sentinel to prevent multiple triggers
+                    observer.unobserve(entry.target);
+
+                    // Render the next batch without updating emoji details
+                    renderNextBatch();
+                }
+            });
+        }
+
+
+        function createEmojiCard(emoji, isSuggested = false) {
+            const card = document.createElement("div");
+            card.classList.add("results-card");
+            if (isSuggested) {
+                card.classList.add("suggested-card");
+            }
+            card.addEventListener("click", () => showEmojiInfo(emoji));
+            card.title = `${emoji.name}`;
+            card.dataset.emojiId = emoji.unified;
+            const displayName = emoji.short_name.replace(/_/g, " ");
+            const emojiText =
+                emoji.native ||
+                String.fromCodePoint(...emoji.unified.split("-").map((u) => `0x${u}`));
+            card.innerHTML = `
+        <div>${emojiText}</div>
+        <p class="name">${displayName}</p>
+        <div class="copy-buttons-container">
+          <button class="copy-button" onclick="copyToClipboard('${emojiText}')">📋</button>
+          <button class="copy-button" onclick="copyToClipboard('U+${emoji.unified}')">U+...</button>
+        </div>
+      `;
+            return card;
+        }
+
+        function handleSuggestions(searchTerm, displayedEmojis, container, filteredEmojis) {
+            // This function is now handled within renderEmojis via the flattened list
+        }
+
+function copyToClipboard(text) {
+    const buttonElement = event.currentTarget;  // Use event.currentTarget for a reliable reference
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
+            const originalText = buttonElement.innerHTML;
+            buttonElement.innerHTML = "✔️";  // Change icon to checkmark
+            buttonElement.disabled = true;  // Disable the button temporarily to avoid double clicks
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;  // Revert back to original icon
+                buttonElement.disabled = false;  // Re-enable the button
+            }, 1000);  // 1-second delay before reverting
+        })
+        .catch((err) => {
+            console.error("Failed to copy: ", err);
+        });
+}
+
+
+        function updateCategory(category) {
+            currentCategory = category;
+            currentBatchIndex = 0;  // Reset batch index
+            currentSubcategoryIndex = 0;  // Reset subcategory index
+            flatEmojiList = [];  // Ensure flatEmojiList is cleared to render fresh emojis
+            forceShowFirstEmoji = true;  // Force showing the first emoji info for category switch
+            renderEmojis(currentSearchTerm, category);  // Render with new category
+        }
+        function showEmojiInfo(emoji) {
+            currentSelectedEmoji = emoji
+            const infoPanel = document.getElementById("cards-container");
+            infoPanel.innerHTML = "";
+            const mainEmojiText = String.fromCodePoint(
+                ...emoji.unified.split("-").map((u) => `0x${u}`)
+            );
+            const platformInfoCards = [
+                emoji.has_img_apple && {
+                    title: "Apple",
+                    image: `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-apple-64/${emoji.image}`,
+                    buttons: [
+                        {
+                            text: "🔗",
+                            action: () =>
+                                openImage(
+                                    `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-apple-64/${emoji.image}`
+                                ),
+                        },
+                    ],
+                },
+                emoji.has_img_google && {
+                    title: "Google",
+                    image: `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-google-64/${emoji.image}`,
+                    buttons: [
+                        {
+                            text: "🔗",
+                            action: () =>
+                                openImage(
+                                    `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-google-64/${emoji.image}`
+                                ),
+                        },
+                    ],
+                },
+                emoji.has_img_twitter && {
+                    title: "Twitter",
+                    image: `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-twitter-64/${emoji.image}`,
+                    buttons: [
+                        {
+                            text: "🔗",
+                            action: () =>
+                                openImage(
+                                    `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-twitter-64/${emoji.image}`
+                                ),
+                        },
+                    ],
+                },
+                emoji.has_img_facebook && {
+                    title: "Facebook",
+                    image: `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-facebook-64/${emoji.image}`,
+                    buttons: [
+                        {
+                            text: "🔗",
+                            action: () =>
+                                openImage(
+                                    `https://raw.githubusercontent.com/iamcal/emoji-data/master/img-facebook-64/${emoji.image}`
+                                ),
+                        },
+                    ],
+                },
+                {
+                    title: "Noto",
+                    textContent: mainEmojiText,
+                    className: "noto",
+                    buttons: [],
+                },
+                {
+                    title: "Sans",
+                    textContent: mainEmojiText,
+                    className: "sans",
+                    buttons: [],
+                },
+            ].filter(Boolean);
+            const skinToneInfoCards = emoji.skin_variations
+                ? Object.values(emoji.skin_variations).map((variation) => ({
+                    textContent: String.fromCodePoint(
+                        ...variation.unified.split("-").map((u) => `0x${u}`)
+                    ),
+                      className: "skin-tone",
+                    buttons: [
+                        {
+                            text: "📋",
+                            action: (event) => {
+                                const emojiGlyph = String.fromCodePoint(
+                                    ...variation.unified.split("-").map((u) => `0x${u}`)
+                                );
+                                copyToClipboard(emojiGlyph);
+                            },
+                        },
+                    ],
+                }))
+                : [];
+            const uniqueTags = new Set([
+                ...(emoji.keywords || []),
+                ...(emoji.emoticons || []),
+            ]);
+            createInfoCard({
+                name: emoji.name,
+                textContent: mainEmojiText,
+                category: emoji.category,
+                subcategory: emoji.subcategory,
+                aliases: emoji.aliases,
+                colorAverage: emoji.colorAverage || 'rgb(255,255,255)',
+                tags: [...uniqueTags].filter((tag) => tag && tag.trim() !== ""),
+                definition:
+                    (emoji.native || "") +
+                    " " +
+                    (emoji.description || "No description available 😬"),
+                buttons: [
+                    {
+                        title: "Copy Glyph",
+                        text: "📋 Glyph",
+                        action: (event) => copyToClipboard(mainEmojiText),
+                    },
+                    {
+                        title: "Copy Unicode",
+                        text: `📋 U+${emoji.unified}`,
+                        action: (event) => copyToClipboard(`U+${emoji.unified}`),
+                    },
+                ],
+                infoSections: [
+                    {
+                        header: "Other Versions",
+                        cards: platformInfoCards,
+                    },
+                    skinToneInfoCards.length > 0 && {
+                        header: "Skin Tone Variations",
+                        cards: skinToneInfoCards,
+                    },
+                ].filter(Boolean),
+            });
+            highlightActiveCard(emoji.unified);
+              if (twitterStyle) {
+                twemoji.parse(document.querySelector(".main-content"));
+                document.querySelectorAll(".info-card button").forEach(button => {
+                  twemoji.parse(button);
+                });
+                  document.querySelectorAll(".skin-tone").forEach(button => {
+                  twemoji.parse(button);
+                });
+              }
+        }
+
+
+        function highlightActiveCard(id) {
+            const cards = document.querySelectorAll(".results-card");
+            cards.forEach((card) => card.classList.remove("active"));
+            const activeCard = document.querySelector(
+                `.results-card[data-emoji-id="${id}"]`
+            );
+            if (activeCard) {
+                activeCard.classList.add("active");
+                //console.log(`Active card set for ID: ${id}`);
+            }
+        }
+
+        function openImage(url) {
+            window.open(url, "_blank");
+        }
+        document.getElementById("searchInput").addEventListener("input", (event) => {
+            currentSearchTerm = event.target.value.toLowerCase();
+            currentBatchIndex = 0;  // Reset batch index
+            currentSubcategoryIndex = 0;  // Reset subcategory index
+            flatEmojiList = [];  // Ensure flatEmojiList is cleared to render fresh emojis
+            forceShowFirstEmoji = true;  // Force showing the first emoji info for search
+            renderEmojis(currentSearchTerm, currentCategory);  // Render based on search input
+            document.getElementById("emojiContainer").scrollTop = 0;  // Scroll to top
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById("searchInput");
+            const clearSearchBtn = document.getElementById("clearSearchBtn");
+            clearSearchBtn.addEventListener("click", () => {
+                searchInput.value = "";
+                currentSearchTerm = "";
+                renderEmojis("", currentCategory);
+                searchInput.focus();
+            });
+            searchInput.addEventListener("input", () => {
+                clearSearchBtn.style.visibility = searchInput.value ? "visible" : "hidden";
+            });
+        });
+
+        document
+            .getElementById("categoryContainer")
+            .addEventListener("click", (event) => {
+                if (event.target.classList.contains("category-button") ||
+                    event.target.parentElement.classList.contains("category-button")) {
+                    const button = event.target.classList.contains("category-button") ? event.target : event.target.parentElement;
+                    document
+                        .querySelectorAll(".category-button")
+                        .forEach((button) => button.classList.remove("active"));
+                    button.classList.add("active");
+                    const selectedCategory = button.getAttribute("data-category");
+                    updateCategory(selectedCategory);
+                }
+                document.getElementById("emojiContainer").scrollTop = 0;  // Scroll to top
+
+            });
+
+        fetchEmojis();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("defaultViewBtn").classList.add('active')
+
+            document.getElementById("categoryAll").classList.add('active')
+            const defaultViewBtn = document.getElementById("defaultViewBtn");
+            const simpleViewBtn = document.getElementById("simpleViewBtn");
+            const emojiContainer = document.getElementById("emojiContainer");
+
+            defaultViewBtn.addEventListener("click", setDefaultView);
+            simpleViewBtn.addEventListener("click", setSimpleView);
+        });
+
+  </script>
+</body>
+
+</html>
