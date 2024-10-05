@@ -3,7 +3,9 @@
 **A powerful, fast, and feature-rich emoji browsing application.** Browse, search, and compare emojis from various platforms such as Google, Twitter, and Noto. Change styles dynamically, filter by categories, and get smart search suggestions powered by Fuse.js. Explore emoji colors and averages to enhance your emoji-related projects, whether for design, analysis, or simply browsing through the vast emoji catalog like you would on **Emojipedia** or **Wikipedia**.
 
 ## 🔗 GitHub Pages Link
-[Emoji Browser Live Demo](https://your-github-username.github.io/emoji-browser/)
+🌎 [Emoji Browser Live Website](https://tezumie.github.io/Emoji-Catalog/) 🤩
+
+💫 This project was built entirely in [aijs browser based code editor](https://aijs.io/home). 🙌
 
 ## 🌟 Features
 - **Comprehensive Emoji Browsing:** View emojis in different styles from Google, Twitter, Noto, and default platform styles, including platform comparisons, much like a detailed **emoji list** on popular **emoji finders**.
@@ -20,7 +22,7 @@
 - **Custom Merged Data:** Combined in `data/merged_emoji_data.json` and `data/regional-emoji-data.json`.
 
 ## 📷 Cover Image
-![Cover Image](https://your-github-username.github.io/emoji-browser/assets/cover.png)
+![Cover Image](cover.png)
 
 ## 📦 Dependencies
 - [Fuse.js](https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.min.js): Fuzzy search library for smart suggestions.
